@@ -26,6 +26,6 @@ public interface IProductService {
 	  * @param product
 	  * @return
 	  */
-	 public Product addProduct(Product product);
+	 public Product addProduct(Product product, long userId) throws RecordNotFoundException;
 
 }

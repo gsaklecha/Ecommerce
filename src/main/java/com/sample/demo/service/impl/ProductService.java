@@ -19,6 +19,9 @@ public class ProductService implements IProductService {
 	IGenericDao<Product> productDao;
 	
 	@Autowired
+	UserService userService;
+	
+	@Autowired
 	public void setDao(IGenericDao<Product> daoToSet) {
 		productDao = daoToSet;
 		productDao.setClazz(Product.class);
@@ -35,8 +38,9 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(Product product) {
+    public Product addProduct(Product product, long userId) throws RecordNotFoundException {
     	product.setVersionId(UUID.randomUUID().toString());
+    	product.setUser(userService.getUserById(userId));
         return productDao.save(product);
     }
 

@@ -10,7 +10,8 @@ CREATE TABLE PRODUCT (
   version_id VARCHAR,
   product_name VARCHAR(250) NOT NULL,
   price NUMBER NOT NULL,
-  picture_url VARCHAR(500) DEFAULT NULL
+  picture_url VARCHAR(500) DEFAULT NULL,
+  user_id INT NOT NULL
 );
 
 CREATE TABLE CART_ITEM (
