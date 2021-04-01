@@ -25,19 +25,12 @@ public class UserService implements IUserService {
 	}
 	
 	@Override
-	public User getUserByToken(String token) {
-		User user = new User();
+	public User getUserByToken(String token) throws RecordNotFoundException {
 		if (token.equals("SELLER")) {
-			user.setId(1L);
-			user.setName("Seller");
-			user.setSeller(true);
+			return this.getUserById(1);
 		} else {
-			user.setId(2L);
-			user.setName("Normal User");
-			user.setSeller(false);
+			return this.getUserById(2);
 		}
-		
-		return user;
 	}
 
 	@Override

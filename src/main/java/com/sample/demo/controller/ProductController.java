@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.demo.exception.PersistException;
@@ -51,7 +50,7 @@ public class ProductController {
 	public ResponseEntity<Product> createProduct(@RequestHeader("token") String token, @RequestBody Product product) throws PersistException, UnauthorizedException, RecordNotFoundException {
 		User user = userService.getUserByToken(token);
 		if (user.isSeller()) {
-			Product created = productService.addProduct(product, user.getId());
+			Product created = productService.addProduct(product, user);
 			return new ResponseEntity<Product>(created, new HttpHeaders(), HttpStatus.CREATED);
 		} else {
 			throw new UnauthorizedException("You do not have permission to add product");

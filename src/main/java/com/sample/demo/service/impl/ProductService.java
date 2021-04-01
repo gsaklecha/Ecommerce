@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.demo.exception.RecordNotFoundException;
 import com.sample.demo.model.Product;
+import com.sample.demo.model.User;
 import com.sample.demo.repository.IGenericDao;
 import com.sample.demo.service.IProductService;
 
@@ -17,9 +18,6 @@ import com.sample.demo.service.IProductService;
 public class ProductService implements IProductService {
 	
 	IGenericDao<Product> productDao;
-	
-	@Autowired
-	UserService userService;
 	
 	@Autowired
 	public void setDao(IGenericDao<Product> daoToSet) {
@@ -38,9 +36,9 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(Product product, long userId) throws RecordNotFoundException {
+    public Product addProduct(Product product, User user) throws RecordNotFoundException {
     	product.setVersionId(UUID.randomUUID().toString());
-    	product.setUser(userService.getUserById(userId));
+    	product.setUser(user);
         return productDao.save(product);
     }
 

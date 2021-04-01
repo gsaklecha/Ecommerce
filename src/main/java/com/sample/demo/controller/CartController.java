@@ -35,7 +35,7 @@ public class CartController {
 	IUserService userService;
 
 	@GetMapping
-	public @NotNull ResponseEntity<List<CartItem>> getCartItems(@RequestHeader("token") String token) {
+	public @NotNull ResponseEntity<List<CartItem>> getCartItems(@RequestHeader("token") String token) throws RecordNotFoundException {
 		User user = userService.getUserByToken(token);
 		List<CartItem> list = cartService.getCartItems(user);
 		return new ResponseEntity<List<CartItem>>(list, new HttpHeaders(), HttpStatus.OK);

@@ -9,8 +9,9 @@ public interface IUserService {
 	 * Method to extract user information from token
 	 * @param token
 	 * @return
+	 * @throws RecordNotFoundException 
 	 */
-	public User getUserByToken(String token);
+	public User getUserByToken(String token) throws RecordNotFoundException;
 	
 	/**
 	 * Method to get User by user id

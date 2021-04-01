@@ -28,9 +28,6 @@ public class OrderService implements IOrderService {
 	@Autowired
 	OrderDao orderDao;
 
-	@Autowired
-	UserService userService;
-	
 	@Override
 	public List<OrderDTO> getOrders(User user) {
 		List<Order> orders = orderDao.getOrders(user);
@@ -43,11 +40,11 @@ public class OrderService implements IOrderService {
 	}
 
 	@Override
-	public Order addOrder(OrderDTO orderDTO, long userId) throws RecordNotFoundException {
+	public Order addOrder(OrderDTO orderDTO, User user) throws RecordNotFoundException {
 		Order order = new Order();
 		order.setStatus("PENDING");
 		order.setDateCreated(new Date(System.currentTimeMillis()));
-		order.setUser(userService.getUserById(userId));
+		order.setUser(user);
 		List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
 		for(OrderProductDTO orderProductDTO: orderDTO.getProducts()) {
 			OrderProduct orderProduct = new OrderProduct();

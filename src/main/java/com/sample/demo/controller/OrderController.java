@@ -36,7 +36,7 @@ public class OrderController {
 	IUserService userService;
 
 	@GetMapping
-	public @NotNull ResponseEntity<List<OrderDTO>> getOrders(@RequestHeader("token") String token) {
+	public @NotNull ResponseEntity<List<OrderDTO>> getOrders(@RequestHeader("token") String token) throws RecordNotFoundException {
 		User user = userService.getUserByToken(token);
 		List<OrderDTO> list = orderService.getOrders(user);
 		return new ResponseEntity<List<OrderDTO>>(list, new HttpHeaders(), HttpStatus.OK);
@@ -46,7 +46,7 @@ public class OrderController {
 	public ResponseEntity<OrderDTO> createOrder(@RequestHeader("token") String token, @RequestBody OrderDTO orderDTO)
 			throws PersistException, UnauthorizedException, RecordNotFoundException {
 		User user = userService.getUserByToken(token);
-		Order order = orderService.addOrder(orderDTO, user.getId());
+		Order order = orderService.addOrder(orderDTO, user);
 		OrderDTO dto = EntityToDTOMapper.mapOrderEntityToDTO(order);
 		return new ResponseEntity<OrderDTO>(dto, new HttpHeaders(), HttpStatus.CREATED);
 	}

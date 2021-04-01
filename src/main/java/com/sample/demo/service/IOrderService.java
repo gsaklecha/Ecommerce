@@ -19,10 +19,10 @@ public interface IOrderService {
 	/**
 	 * Method to add order
 	 * @param orderDTO
-	 * @param userId
+	 * @param user
 	 * @return
 	 * @throws RecordNotFoundException
 	 */
-	public Order addOrder(OrderDTO orderDTO, long userId) throws RecordNotFoundException;
+	public Order addOrder(OrderDTO orderDTO, User user) throws RecordNotFoundException;
 
 }

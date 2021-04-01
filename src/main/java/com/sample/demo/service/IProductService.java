@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sample.demo.exception.RecordNotFoundException;
 import com.sample.demo.model.Product;
+import com.sample.demo.model.User;
 
 public interface IProductService {
 	
@@ -24,8 +25,9 @@ public interface IProductService {
 	 /**
 	  * method to add product
 	  * @param product
+	  * @param user
 	  * @return
 	  */
-	 public Product addProduct(Product product, long userId) throws RecordNotFoundException;
+	 public Product addProduct(Product product, User user) throws RecordNotFoundException;
 
 }
