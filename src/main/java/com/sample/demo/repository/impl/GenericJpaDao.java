@@ -57,7 +57,7 @@ public class GenericJpaDao<T extends Serializable> implements IGenericDao<T> {
 		if(results.size() > 0) {
 			return (T) results.get(0);
 		} else {
-			 throw new RecordNotFoundException("Can't find book for versionId "
+			 throw new RecordNotFoundException("Can't find entity for versionId "
 		                + versionId);
 		}
 	}
